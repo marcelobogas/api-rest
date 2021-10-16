@@ -2,7 +2,6 @@
 
 namespace App\Database;
 
-use App\Config\Constantes;
 use Exception;
 use PDO;
 use PDOException;
@@ -16,13 +15,13 @@ class Conexao
 
     public static function getConnection()
     {
-        $pdoConfig  = Constantes::DB_DRIVER;
-        $pdoConfig .= ":Server=" . Constantes::DB_HOST;
-        $pdoConfig .= ";Database=" . Constantes::DB_NAME;
+        $pdoConfig  = getenv('DB_DRIVER');
+        $pdoConfig .= ":Server=" . getenv('DB_HOST');
+        $pdoConfig .= ";Database=" . getenv('DB_NAME');
 
         try {
             if (!isset($connection)) {
-                $connection =  new PDO($pdoConfig, Constantes::DB_USER, Constantes::DB_PASSWORD);
+                $connection =  new PDO($pdoConfig, getenv('DB_USER'), getenv('DB_PASSWORD'));
                 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
             return $connection;
