@@ -17,7 +17,8 @@ class Estados
         }
 
         /* retorna os dados em formato JSON */
-        return json_encode($estados, JSON_UNESCAPED_UNICODE);
+        return $estados;
+        /* return json_encode($estados, JSON_UNESCAPED_UNICODE); */
     }
 
     public static function post()

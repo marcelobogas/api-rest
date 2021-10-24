@@ -32,9 +32,12 @@ class Estados
                 /* prepara a sql de consulta e retorna apenas o País pelo ID */
                 $data = $conn->prepare('SELECT * FROM ' . self::$table . " WHERE id = " . $id);
                 $data->execute();
+
+                /* retorna os dados em formato de array */
+                return $data->fetchAll(PDO::FETCH_ASSOC);
     
                 /* itera os dados da consulta */
-                while ($dataState = $data->fetch(PDO::FETCH_ASSOC)) {
+                /* while ($dataState = $data->fetch(PDO::FETCH_ASSOC)) {
                     $estados[$dataState['id']] = array(
                         'id' => $dataState['id'],
                         'nome' => $dataState['nome'],
@@ -42,10 +45,10 @@ class Estados
                         'ibge' => $dataState['ibge'],
                         'id_pais' => $dataState['id_pais'],
                     );
-                }
+                } */
 
                 /* retorna os dados em formato de array */
-                return $estados;
+                /* return $estados; */
             } catch (\Exception $e) {
                 die('Erro de conexão: ' . $e->getMessage());
             }
